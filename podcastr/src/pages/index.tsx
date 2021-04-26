@@ -7,7 +7,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 import { api } from '../services/api';
 import { ConvertDurationToTimeString } from '../utils/convertDurationToTimeString';
-//import { usePlayer } from '../contexts/PlayerContext';
+import { usePlayer } from '../contexts/PlayerContext';
 
 import styles from './home.module.scss';
 
@@ -28,12 +28,12 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  //const { playList } = usePlayer()
+  const { playList } = usePlayer()
 
   const episodeList = [...latestEpisodes, ...allEpisodes];
 
   return (
-    <div className={styles.homepage}>
+    <div className={styles.homePage}>
 
       <Head>
         <title>Home | Podcastr</title>
@@ -63,7 +63,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     <span>{episode.durationAsString}</span>
                   </div>
                 
-                  <button type="button">
+                  <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
                     <img src="/play-green.svg" alt="Tocar episódio"/>
                   </button>
 
