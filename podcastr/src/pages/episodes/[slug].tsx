@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { usePlayer } from '../../contexts/PlayerContext'
 import { api } from '../../services/api'
-import { ConvertDurationToTimeString } from '../../utils/convertDurationToTimeString'
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
 
 import styles from './episode.module.scss';
 
@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     members: data.members,
     publishedAt: format(parseISO(data.published_at), 'd MMM yy', { locale: ptBR }),
     duration: Number(data.file.duration),
-    durationAsString: ConvertDurationToTimeString(Number(data.file.duration)),
+    durationAsString: convertDurationToTimeString(Number(data.file.duration)),
     description: data.description,
     url: data.file.url
   }

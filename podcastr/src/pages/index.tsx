@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
 import { api } from '../services/api';
-import { ConvertDurationToTimeString } from '../utils/convertDurationToTimeString';
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import { usePlayer } from '../contexts/PlayerContext';
 
 import styles from './home.module.scss';
@@ -141,7 +141,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
        members: episode.members,
        publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }),
        duration: Number(episode.file.duration),
-       durationAsString: ConvertDurationToTimeString(Number(episode.file.duration)),
+       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
        url: episode.file.url
      }
    })
